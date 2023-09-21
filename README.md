@@ -1,3 +1,7 @@
+#适配Jellyfin
+感谢Nolovenodie的项目,项目地址：https://github.com/Nolovenodie/emby-crx
+以下是原项目内容：
+------------------------------------------------------------------------
 # Emby Crx
 
 _Emby 增强/美化 插件 (适用于 Chrome 内核浏览器)_
