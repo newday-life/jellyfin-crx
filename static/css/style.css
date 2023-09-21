@@ -1,3 +1,148 @@
+.mdl-spinner-misty {
+    height: 1.95em;
+    position: relative;
+    width: 1.95em;
+    zoom: .5;
+}
+.scrollbuttoncontainer-backwards {
+	left: 0;
+	inset-inline-start: 0;
+	inset-inline-end: initial;
+}
+
+.scrollbuttoncontainer-forwards {
+	right: 0;
+	inset-inline-start: initial;
+	inset-inline-end: 0;
+}
+
+.paper-icon-button-light>i {
+	font-size: 4em !important;
+	height: 1.25em;
+	width: 1.25em;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.paper-icon-button-light:enabled {
+	cursor: pointer;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.emby-scrollbuttons-scrollbutton {
+		transition: -webkit-transform 180ms ease-out;
+		transition: transform 180ms ease-out;
+	}
+}
+
+.paper-icon-button-light {
+	position: relative;
+	display: -webkit-inline-flex;
+	display: inline-flex;
+	-webkit-align-items: center;
+	align-items: center;
+	box-sizing: border-box;
+	margin: 0 .29em;
+	background: 0 0;
+	text-align: center;
+	font-size: inherit;
+	font-family: inherit;
+	color: inherit;
+	-webkit-user-select: none;
+	user-select: none;
+	z-index: 0;
+	min-width: initial;
+	min-height: initial;
+	width: auto;
+	height: auto;
+	padding: .556em;
+	vertical-align: middle;
+	border: 0;
+	vertical-align: middle;
+	position: relative;
+	overflow: hidden;
+	border-radius: 50%;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-justify-content: center;
+	justify-content: center;
+	outline: 0 !important;
+	text-shadow: inherit;
+}
+
+.homePage .section0 .emby-scrollbuttons {
+	top: -4em;
+}
+
+.skinHeader.focuscontainer-x.skinHeader-withBackground {
+	background: linear-gradient(rgba(0, 0, 0, .5), transparent) !important;
+}
+
+.homePage.pageWithAbsoluteTabs:not(.noSecondaryNavPage) {
+	padding-top: 0 !important;
+}
+
+.homePage:not(.hide) .scrollbuttoncontainer {
+	background: transparent !important;
+}
+
+button.emby-scrollbuttons-scrollbutton.paper-icon-button-light {
+	-webkit-box-shadow: 0px 0px 15px 0px rgb(0 0 0 / 99%) !important;
+	-moz-box-shadow: 0px 0px 15px 0px rgb(0 0 0 / 99%) !important;
+	box-shadow: 0px 0px 15px 0px rgb(0 0 0 / 99%) !important;
+	-webkit-backdrop-filter: blur(0.5em) saturate(0.5) !important;
+	backdrop-filter: blur(0.5em) saturate(0.5) !important;
+	margin: 0 30px 0;
+	transform: scale(.85) !important;
+	background: #ffffff30;
+	border-radius: 50% !important;
+}
+
+.emby-scrollbuttons.emby-scrollbuttons-misty {
+	position: absolute;
+	z-index: 99999999999 !important;
+	height: 100px;
+	width: 100%;
+	align-items: center;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.scrollbuttoncontainer-misty {
+	position: absolute;
+	display: flex;
+	opacity: 0;
+}
+
+.scrollbuttoncontainer-misty.scrollbuttoncontainer-backwards:hover,
+.scrollbuttoncontainer-misty.scrollbuttoncontainer-forwards:hover {
+	opacity: 1 !important;
+}
+
+@media (min-width: 50em) {
+	.misty-banner-item {
+		min-height: 75vh;
+	}
+}
+
+@media not all and (min-width: 50em) {
+	.misty-banner-cover {
+		min-height: 142.328vw;
+	}
+
+	div.misty-loading h1 {
+		font-size: 2em;
+	}
+
+	div.misty-banner-info {
+		margin-top: 10vh;
+	}
+
+	.misty-banner-logos {
+		margin-bottom: 2rem;
+	}
+}
+
 ::-webkit-scrollbar {
 	width: .3em !important;
 }
@@ -8,90 +153,94 @@
 
 .skinHeader-withBackground {
 	right: 0 !important;
-	background-image: linear-gradient(rgba(0,0,0,.5), transparent);
+	background-image: linear-gradient(rgba(0, 0, 0, .5), transparent)!important;
 	background-color: unset;
 }
 
-.view:not(.hide) .skinHeader, .skinHeader-withBackground.headroom-scrolling {
+.homePage:not(.hide) .skinHeader,
+.skinHeader-withBackground.headroom-scrolling {
 	width: auto;
 	background-image: linear-gradient(black, transparent) !important;
 	background-color: unset !important;
 }
 
-.view[data-type=home]:not(.hide) > div:nth-child(1) .scrollSlider.padded-top-page {
+.homePage[data-type=home]:not(.hide)>div:nth-child(1) .scrollSlider.padded-top-page {
 	padding-top: 0 !important;
 }
 
-.view:not(.hide) .itemsContainer-finepointerwrap {
+.homePage:not(.hide) .itemsContainer-finepointerwrap {
 	flex-wrap: initial !important;
 	-webkit-flex-wrap: initial !important;
 }
 
-.view:not(.hide) .section0 {
+.homePage:not(.hide) .section0 {
 	z-index: 2;
 }
 
-.view:not(.hide) .section0 .cardText {
+.homePage:not(.hide) .section0 .cardText {
 	position: absolute;
 	top: 0;
-	display: flex; /* 如果不需要媒体库标题显示, 请将flex改为none */
+	display: none;
+	/* 如果不需要媒体库标题显示, 请将flex改为none */
 	width: 100%;
 	height: 100%;
-	padding: 0;
+	padding: 0 !important;
 	background-color: rgba(0, 0, 0, .5);
 	font-weight: bolder;
 	font-size: larger;
-	border-radius: 0.3em;
+	border-radius: var(--cardbox-radius);
 	transition: .2s;
 	opacity: 0;
 }
 
-.view:not(.hide) .section0 .backdropCard:hover .cardText {
+.homePage:not(.hide) .section0 .card:hover .cardText {
 	opacity: 1;
 }
 
-.view:not(.hide) .section0 .cardText button {
+.homePage:not(.hide) .section0 .cardText button {
 	text-decoration: none;
 }
 
-.view:not(.hide) .section0 .cardOverlayContainer {
+.homePage:not(.hide) .section0 .cardOverlayContainer {
 	background: none;
 }
 
-.view:not(.hide) .section0 .cardOverlayContainer label,
-.view:not(.hide) .section0 .sectionTitleContainer {
+.homePage:not(.hide) .section0 .cardOverlayContainer label,
+.homePage:not(.hide) .section0 .sectionTitleContainer,
+.homePage:not(.hide) .section0 .sectionTitle {
 	display: none !important;
 }
 
-.view:not(.hide) .section0 .cardBox-touchzoom {
+.homePage:not(.hide) .section0 .cardBox-touchzoom {
 	box-shadow: 0 8px 10px rgb(0 0 0 / 15%);
 }
 
-.view:not(.hide) .section0 .backdropCard {
+.homePage:not(.hide) .section0 .card {
 	transition: all 1.5s cubic-bezier(0, 1.75, .25, 1) 0s;
 }
 
-.view:not(.hide) .section0 .backdropCard:hover {
+.homePage:not(.hide) .section0 .card:hover {
 	transform: scale(1.1) !important;
 }
 
-.view:not(.hide) .section0 .scrollbuttoncontainer {
+.homePage:not(.hide) .section0 .scrollbuttoncontainer {
 	top: 0;
 	bottom: calc(.8em - min(.72em, max(.48em, 1.78vw)) / 2);
 	background-color: rgba(0, 0, 0, 0);
 	overflow: visible;
 }
 
-.view:not(.hide) .section0 .scrollbuttoncontainer:hover > .emby-scrollbuttons-scrollbutton{
+.homePage:not(.hide) .section0 .scrollbuttoncontainer:hover>.emby-scrollbuttons-scrollbutton,
+.homePage:not(.hide) .scrollbuttoncontainer-misty:hover>.emby-scrollbuttons-scrollbutton {
 	background-color: rgba(0, 0, 0, .5);
 	transform: scale(.85) !important;
 }
 
-.tabs-viewmenubar-backgroundcontainer:not(.tabs-viewmenubar-backgroundcontainer-tv) {
+/* .tabs-viewmenubar-backgroundcontainer:not(.tabs-viewmenubar-backgroundcontainer-tv) {
 	background: 0 0 !important;
 	-webkit-backdrop-filter: blur(10px) !important;
 	backdrop-filter: blur(10px) !important;
-}
+} */
 
 .misty-banner {
 	position: relative;
@@ -103,6 +252,7 @@
 	max-height: 100vh;
 	user-select: none;
 	object-fit: cover;
+	object-position: top;
 	-webkit-mask-image: linear-gradient(to top, transparent 0%, black 30%);
 	mask-image: linear-gradient(to top, transparent 0%, black 30%);
 }
@@ -111,7 +261,7 @@
 	position: absolute;
 	user-select: none;
 	object-fit: contain;
-	height: clamp(0rem, -2.182rem + 10.91vw, 6rem);
+	height: clamp(3rem, -2.182rem + 10.91vw, 6rem);
 	/* width: fit-content; */
 	transform: translateY(calc(-50% - clamp(-2rem, -3.455rem + 7.27vw, 2rem)));
 	right: calc(3.4% + min(0.72em, max(0.48em, 1.78vw)));
@@ -146,6 +296,7 @@
 	transition: .8s;
 	transform: scale(1.15);
 	opacity: 0;
+	font-size: 4em;
 }
 
 .misty-loading h1.active {
@@ -172,13 +323,24 @@
 	display: flex;
 	justify-content: flex-end;
 	flex-direction: column;
+	/* background-image: linear-gradient(90deg, rgba(0, 0, 0, .6), transparent); */
+
+}
+
+.misty-banner-mask {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
 	background-image: linear-gradient(90deg, rgba(0, 0, 0, .6), transparent);
+	-webkit-mask-image: linear-gradient(to top, transparent 0%, black 10%);
+	mask-image: linear-gradient(to top, transparent 0%, black 10%);
 }
 
 .misty-banner-body {
 	display: flex;
 	position: relative;
-	left: 0;
+	left: -100%;
 	transition: all 1.5s cubic-bezier(0.15, 0.07, 0, 1) 0s;
 }
 
@@ -200,21 +362,22 @@
 	justify-content: center
 }
 
-.misty-banner-info > * {
+.misty-banner-info>* {
 	transition: all 2.5s cubic-bezier(0, 1.41, 0.36, 0.93) .4s;
 	transform: translateY(150%);
 	opacity: 0 !important;
 }
 
-.misty-banner-item.active .misty-banner-info > * {
+.misty-banner-item.active .misty-banner-info>* {
 	transform: translateY(0);
 	opacity: 1 !important;
 }
 
-.misty-banner-info > div:nth-child(2) {
+.misty-banner-info>div:nth-child(2) {
 	transition-delay: .6s;
 }
-.misty-banner-info > div:nth-child(3) {
+
+.misty-banner-info>div:nth-child(3) {
 	transition-delay: .8s;
 }
 
@@ -225,7 +388,7 @@
 	margin: 0;
 	text-shadow: 0 4px 10px rgb(0 0 0 / 20%);
 	/* margin-bottom: clamp(0rem, -.545rem + 2.73vw, 1.5rem); */
-	max-width: 80%;
+	max-width: 50%;
 	display: -webkit-box !important;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 1;
@@ -234,7 +397,7 @@
 
 .misty-banner-info p {
 	color: #fff !important;
-	font-size: clamp(.6rem, .4rem + 1vw, 1.6rem);
+	font-size: clamp(1rem, .4rem + 1vw, 1.6rem);
 	font-weight: bold;
 	max-width: 47%;
 	opacity: .7;
@@ -254,16 +417,17 @@
 	height: 1.8em;
 	background-color: #fff;
 	border: none;
-	font-size: clamp(.6rem, -.275rem + 2.5vw, 1.6rem);
+	font-size: clamp(1rem, -.275rem + 2.5vw, 1.6rem);
 	border-radius: 10px;
 	font-weight: bold;
 	letter-spacing: 2px;
 	box-shadow: 0 2px 7px rgba(1, 1, 1, -.8);
 	font-family: system-ui;
 	transition: .2s;
+	margin-right: 1rem;
 }
 
-.misty-banner-info button:hover{
+.misty-banner-info button:hover {
 	transform: scale(.95);
 }
 
@@ -272,7 +436,10 @@
 		margin-top: 0;
 	}
 }
+
+/* 
 @media screen and (max-width: 52em) {
+
 	.misty-banner-info button,
 	.misty-banner-info p {
 		display: none;
@@ -280,16 +447,18 @@
 }
 
 @media screen and (max-width: 35em) {
+
 	.misty-banner-info,
-	.misty-banner-logo 	{
+	.misty-banner-logo {
 		display: none !important;
 	}
-	.misty-banner-body{
+
+	.misty-banner-body {
 		opacity: 0;
 	}
-}
+} */
 
-.misty-banner .backdropCard {
+.misty-banner .card {
 	transition-duration: 0;
 	transform: translateY(80%);
 	opacity: 0;
