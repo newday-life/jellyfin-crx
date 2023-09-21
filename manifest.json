@@ -1,6 +1,6 @@
 {
 	"manifest_version": 2,
-	"name": "Emby Tools.",
+	"name": "Jellyfin Tools.",
 	"version": "1.0.4",
 	"description": "Misty Emby Tools.",
 	"author": "Nolovenodie",
