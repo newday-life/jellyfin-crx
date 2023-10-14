@@ -423,7 +423,7 @@ class Home {
 		// 判断媒体库section0已经加载完
 		await new Promise((resolve, reject) => {
 			let waitsection0 = setInterval(() => {
-				if (document.querySelector(".homePage:not(.hide) .section0 .emby-scrollbuttons")) {
+				if (document.querySelector(".layout-mobile") || document.querySelector(".homePage:not(.hide) .section0 .emby-scrollbuttons")) {
 					clearInterval(waitsection0);
 					resolve();
 				}
