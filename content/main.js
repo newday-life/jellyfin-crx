@@ -168,10 +168,8 @@ class Home {
 	static getImageUrl(itemId, options) {
 		return this.injectCall("getImageUrl", "'" + itemId + "'" + ", " + JSON.stringify(options));
 	}
-
-	static backwards() {
+	static dynamicSwitchCss() {
 		// 背景切换
-		this.index -= this.index - 1 == -1 ? -($(".homePage:not(.hide) .misty-banner-item").length - 1) : 1;
 		$(".homePage:not(.hide) .misty-banner-body").css({ "left": -(this.index * 100).toString() + "%", transition: "all 1.5s cubic-bezier(0.15, 0.07, 0, 1) 0s" });
 		// 信息切换
 		$(".homePage:not(.hide) .misty-banner-info > *").css({ "cssText": "opacity: 0 !important" });
@@ -193,32 +191,30 @@ class Home {
 		// LOGO切换
 		$(".homePage:not(.hide) .misty-banner-logo.active").removeClass("active");
 		$(`.homePage:not(.hide) .misty-banner-logo[id=${id}]`).addClass("active");
+	}
+	static staticSwitchCss() {
+		$(".homePage:not(.hide) .misty-banner-body").css({ "left": -(this.index * 100).toString() + "%", transition: "none" });
+		$(".homePage:not(.hide) .misty-banner-info > *").css({ "cssText": "opacity: 1 !important" });
+		$(".homePage:not(.hide) .misty-banner-info > *").css({
+			transition: "none",
+			transform: "none",
+		});
+		$(".homePage:not(.hide) .misty-banner-item.active").removeClass("active");
+		let id = $(".homePage:not(.hide) .misty-banner-item").eq(this.index).addClass("active").attr("id");
+		$(".homePage:not(.hide) .misty-banner-item:not(.active) .misty-banner-info > *").css({ "cssText": "opacity: 0 !important" });
+		// LOGO切换
+		$(".homePage:not(.hide) .misty-banner-logo.active").removeClass("active");
+		$(`.homePage:not(.hide) .misty-banner-logo[id=${id}]`).addClass("active");
+	}
+	static backwards() {
+		this.index -= this.index - 1 == -1 ? -($(".homePage:not(.hide) .misty-banner-item").length - 1) : 1;
+		this.dynamicSwitchCss();
 	}
 	static forwards() {
-		// 背景切换
 		this.index += this.index + 1 == $(".homePage:not(.hide) .misty-banner-item").length ? -this.index : 1;
-		$(".homePage:not(.hide) .misty-banner-body").css({ "left": -(this.index * 100).toString() + "%", transition: "all 1.5s cubic-bezier(0.15, 0.07, 0, 1) 0s" });
-		// 信息切换
-		$(".homePage:not(.hide) .misty-banner-info > *").css({ "cssText": "opacity: 0 !important" });
-		$(".homePage:not(.hide) .misty-banner-info > *").css({
-			transition: "all 2.5s cubic-bezier(0, 1.41, 0.36, 0.93) .4s",
-			transform: "translateY(150%)"
-		});
-		$(".homePage:not(.hide) .misty-banner-item.active .misty-banner-info > *").css({ "cssText": "opacity: 1 !important" });
-		$(".homePage:not(.hide) .misty-banner-item.active .misty-banner-info > *").css({ transform: "translateY(0)" });
-		$(".homePage:not(.hide) .misty-banner-item.active").removeClass("active");
-		$(".homePage:not(.hide) .misty-banner-info > *").css({ "cssText": "opacity: 0 !important" });
-		$(".homePage:not(.hide) .misty-banner-info > *").css({
-			transition: "all 2.5s cubic-bezier(0, 1.41, 0.36, 0.93) .4s",
-			transform: "translateY(150%)"
-		});
-		let id = $(".homePage:not(.hide) .misty-banner-item").eq(this.index).addClass("active").attr("id");
-		$(".homePage:not(.hide) .misty-banner-item.active .misty-banner-info > *").css({ "cssText": "opacity: 1 !important" });
-		$(".homePage:not(.hide) .misty-banner-item.active .misty-banner-info > *").css({ transform: "translateY(0)" });
-		// LOGO切换
-		$(".homePage:not(.hide) .misty-banner-logo.active").removeClass("active");
-		$(`.homePage:not(.hide) .misty-banner-logo[id=${id}]`).addClass("active");
+		this.dynamicSwitchCss();
 	}
+
 	static transitionListener() {
 		const runningTransitions = new Set();
 		$(".homePage:not(.hide) .misty-banner-body").on('transitionstart', function (e) {
@@ -227,43 +223,21 @@ class Home {
 		}.bind(this));
 		$(".homePage:not(.hide) .misty-banner-body").on('transitionend', function (e) {
 			runningTransitions.delete(e.target);
-			//最后一个动画结束
 			if (runningTransitions.size == 0) {
 				if (this.transitionendFlag) {
+					// console.log("位置：", this.index);
 					if (this.index >= $(".homePage:not(.hide) .misty-banner-item").length - 1) {
 						this.index = 1;
-						$(".homePage:not(.hide) .misty-banner-body").css({ "left": "-100%", transition: "none" });
-						$(".homePage:not(.hide) .misty-banner-info > *").css({ "cssText": "opacity: 1 !important" });
-						$(".homePage:not(.hide) .misty-banner-info > *").css({
-							transition: "none",
-							transform: "none",
-						});
-						$(".homePage:not(.hide) .misty-banner-item.active").removeClass("active");
-						let id = $(".misty-banner-item").eq(this.index).addClass("active").attr("id");
-						$(".homePage:not(.hide) .misty-banner-item:not(.active) .misty-banner-info > *").css({ "cssText": "opacity: 0 !important" });
-						// LOGO切换
-						$(".homePage:not(.hide) .misty-banner-logo.active").removeClass("active");
-						$(`.homePage:not(.hide) .misty-banner-logo[id=${id}]`).addClass("active");
+						this.staticSwitchCss();
 					}
-
 					if (this.index <= 0) {
 						this.index = $(".homePage:not(.hide) .misty-banner-item").length - 2;
-						$(".homePage:not(.hide) .misty-banner-body").css({ "left": -(this.index * 100).toString() + "%", transition: "none" });
-						$(".homePage:not(.hide) .misty-banner-info > *").css({ "cssText": "opacity: 1 !important" });
-						$(".homePage:not(.hide) .misty-banner-info > *").css({
-							transition: "none",
-							transform: "none",
-						});
-						$(".homePage:not(.hide) .misty-banner-item.active").removeClass("active");
-						let id = $(".homePage:not(.hide) .misty-banner-item").eq(this.index).addClass("active").attr("id");
-						$(".homePage:not(.hide) .misty-banner-item:not(.active) .misty-banner-info > *").css({ "cssText": "opacity: 0 !important" });
-						// LOGO切换
-						$(".homePage:not(.hide) .misty-banner-logo.active").removeClass("active");
-						$(`.homePage:not(.hide) .misty-banner-logo[id=${id}]`).addClass("active");
+						this.staticSwitchCss();
 					}
 				}
 				this.transitionendFlag = true;
 			}
+
 		}.bind(this));
 	}
 	static alertDialog() {
