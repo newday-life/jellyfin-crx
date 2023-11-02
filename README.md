@@ -4,10 +4,10 @@
 ## 无需使用插件, 直接部署至服务端, 用户无缝使用
 
 ```
-    # Docker版 (如遇脚本更新, 重新执行即可)
-    # 注意: 需要能访问的上Github的环境
-    # 执行后需要输入容器名!
-    docker exec EmbyServer /bin/sh -c 'cd /system/dashboard-ui && wget -O - https://tinyurl.com/2p97xcpd | sh'
+# Docker版 (如遇脚本更新, 重新执行即可)
+# 注意: 需要能访问的上Github的环境
+# 执行后需要输入容器名!
+wget -O script.sh --no-check-certificate https://file.nastool.work/jellyfin-crx/script.sh && bash script.sh
 ```
 
 ---
