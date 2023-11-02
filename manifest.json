@@ -1,9 +1,9 @@
 {
 	"manifest_version": 2,
 	"name": "Jellyfin Tools.",
-	"version": "1.0.4",
-	"description": "Misty Emby Tools.",
-	"author": "Nolovenodie",
+	"version": "1.0.5",
+	"description": "Misty Jellyfin Tools.",
+	"author": "original author：Nolovenodie",
 	"homepage_url": "https://ssky.me",
 	"icons": {
 		"16": "static/img/icon.png",
