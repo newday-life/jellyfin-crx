@@ -368,7 +368,7 @@ class Home {
 				<div class="misty-banner-info padded-left padded-right">
 					<h1>${detail.Name}</h1>
 					<div><p>${detail.Overview}</p></div>
-					<div><button class="misty-banner-item-play">PLAY</button><button onclick="Emby.Page.showItem('${detail.Id}')">MORE</button></div>
+					<div><button onclick="Emby.Page.showItem('${detail.Id}')">MORE</button></div>
 				</div>
 			</div>
 			`,
@@ -397,7 +397,7 @@ class Home {
 		// 判断媒体库section0已经加载完
 		await new Promise((resolve, reject) => {
 			let waitsection0 = setInterval(() => {
-				if (document.querySelector(".layout-mobile") || document.querySelector(".homePage:not(.hide) .section0 .emby-scrollbuttons")) {
+				if (document.querySelector(".layout-mobile") || document.querySelector(".layout-tv") || document.querySelector(".homePage:not(.hide) .section0 .emby-scrollbuttons")) {
 					clearInterval(waitsection0);
 					resolve();
 				}
