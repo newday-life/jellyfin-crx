@@ -359,8 +359,7 @@ class Home {
 			$(".misty-loading").fadeOut(500, () => $(".misty-loading").remove()); 
 			return;
 		}
-		if (this.randomtop100) this.data.Items = this.getRandomArrayElements(this.data.Items, 10);
-		await this.data.Items.forEach(async (item) => {
+		for(let item of this.data.Items) {
 			const detail = await this.getItem(item.Id),
 				itemHtml = `
 			<div class="misty-banner-item" id="${detail.Id}">
@@ -379,11 +378,11 @@ class Home {
 				$(".homePage:not(.hide) .misty-banner-logos").append(logoHtml);
 			}
 			$(".homePage:not(.hide) .misty-banner-body").append(itemHtml);
-		});
+		};
 		// 只判断第一张海报加载完毕, 优化加载速度
 		await new Promise((resolve, reject) => {
 			let waitLoading = setInterval(() => {
-				if (document.querySelector(".homePage:not(.hide) .misty-banner-cover")?.complete) {
+				if (document.querySelector(".homePage:not(.hide) .misty-banner-cover")?.complete && (document.querySelector(".layout-mobile") || document.querySelector(".layout-tv") || document.querySelector(".homePage:not(.hide) .section0 .emby-scrollbuttons"))) {
 					clearInterval(waitLoading);
 					resolve();
 				}
@@ -394,15 +393,7 @@ class Home {
 		let lastitem = $(".homePage:not(.hide) .misty-banner-item").last().clone();
 		$(".homePage:not(.hide) .misty-banner-body").append(firstitem);
 		$(".homePage:not(.hide) .misty-banner-body").prepend(lastitem);
-		// 判断媒体库section0已经加载完
-		await new Promise((resolve, reject) => {
-			let waitsection0 = setInterval(() => {
-				if (document.querySelector(".layout-mobile") || document.querySelector(".layout-tv") || document.querySelector(".homePage:not(.hide) .section0 .emby-scrollbuttons")) {
-					clearInterval(waitsection0);
-					resolve();
-				}
-			}, 16);
-		});
+		
 		// 分离section0元素移动到misty-banner-library内
 		$('.homePage:not(.hide) .section0 .emby-scrollbuttons').remove();
 		$(".homePage:not(.hide) .section0").detach().appendTo(".homePage:not(.hide) .misty-banner-library");
