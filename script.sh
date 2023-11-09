@@ -7,11 +7,11 @@ docker exec -it  $name rm -rf /jellyfin/jellyfin-web/jellyfin-crx/
 docker exec -it  $name mkdir -p /jellyfin/jellyfin-web/jellyfin-crx/
 
 # 下载所需文件到系统
-wget https://raw.githubusercontent.com/newday-life/jellyfin-crx/master/static/css/style.css -O style.css  
-wget https://raw.githubusercontent.com/newday-life/jellyfin-crx/master/static/js/common-utils.js -O common-utils.js  
-wget https://raw.githubusercontent.com/newday-life/jellyfin-crx/master/static/js/jquery-3.6.0.min.js -O jquery-3.6.0.min.js  
-wget https://raw.githubusercontent.com/newday-life/jellyfin-crx/master/static/js/md5.min.js -O md5.min.js  
-wget https://raw.githubusercontent.com/newday-life/jellyfin-crx/master/content/main.js -O main.js
+wget --no-check-certificate https://raw.githubusercontent.com/newday-life/jellyfin-crx/master/static/css/style.css -O style.css  
+wget --no-check-certificate https://raw.githubusercontent.com/newday-life/jellyfin-crx/master/static/js/common-utils.js -O common-utils.js  
+wget --no-check-certificate https://raw.githubusercontent.com/newday-life/jellyfin-crx/master/static/js/jquery-3.6.0.min.js -O jquery-3.6.0.min.js  
+wget --no-check-certificate https://raw.githubusercontent.com/newday-life/jellyfin-crx/master/static/js/md5.min.js -O md5.min.js  
+wget --no-check-certificate https://raw.githubusercontent.com/newday-life/jellyfin-crx/master/content/main.js -O main.js
 
 # 从系统复制文件到容器内
 docker cp style.css $name:/jellyfin/jellyfin-web/jellyfin-crx/
