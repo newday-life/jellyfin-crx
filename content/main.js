@@ -4,8 +4,8 @@ class Home {
 		this.cache = { items: undefined, item: new Map() };
 		this.index = 1;
 		this.transitionendFlag = false;
-		this.itemQuery = { ImageTypes: "Banner", EnableImageTypes: "Backdrop,Banner,Logo", IncludeItemTypes: "Movie,Series", SortBy: "ProductionYear, PremiereDate, SortName", Recursive: true, ImageTypeLimit: 1, Limit: 10, Fields: "ProductionYear", SortOrder: "Descending", EnableUserData: false, EnableTotalRecordCount: false };
-		this.coverOptions = { type: "Banner", maxWidth: 3000, adjustForPixelRatio: false };
+		this.itemQuery = { ImageTypes: "Backdrop", EnableImageTypes: "Backdrop,Banner,Thumb,Logo", IncludeItemTypes: "Movie,Series", SortBy: "ProductionYear, PremiereDate, SortName", Recursive: true, ImageTypeLimit: 1, Limit: 10, Fields: "Overview", SortOrder: "Descending", EnableUserData: false, EnableTotalRecordCount: false };
+		this.coverOptions = { type: "Backdrop", maxWidth: 3000, adjustForPixelRatio: false };
 		this.logoOptions = { type: "Logo", maxWidth: 3000, adjustForPixelRatio: false };
 		this.coverType_L = "Backdrop";//横屏
 		this.coverType_P = "Primary";//竖屏
@@ -21,7 +21,7 @@ class Home {
 					if (this.coverOptions.type != this.coverType_L) this.coverOptions.type = this.coverType_L;
 				}
 
-				if (e.detail.isRestored == false && !e.target.querySelector('.misty-banner')) {
+				if (!e.detail.isRestored && !e.target.querySelector('.misty-banner')) {
 					this.initLoading();
 					const mutation = new MutationObserver(function (mutationRecoards) {
 						for (let mutationRecoard of mutationRecoards) {
@@ -153,16 +153,6 @@ class Home {
 			this.cache.items = this.injectCall("getItems", "client.getCurrentUserId(), " + JSON.stringify(query));
 		}
 		return this.cache.items;
-	}
-
-	static async getItem(itemId) {
-		// 双缓存 优先使用 WebStorage
-		if (typeof Storage !== "undefined" && !localStorage.getItem("CACHE|" + itemId) && !this.cache.item.has(itemId)) {
-			const data = JSON.stringify(await this.injectCall("getItem", `client.getCurrentUserId(), "${itemId}"`));
-			if (typeof Storage !== "undefined") localStorage.setItem("CACHE|" + itemId, data);
-			else this.cache.item.set(itemId, data);
-		}
-		return JSON.parse(typeof Storage !== "undefined" ? localStorage.getItem("CACHE|" + itemId) : this.cache.item.get(itemId));
 	}
 
 	static getImageUrl(itemId, options) {
@@ -359,9 +349,8 @@ class Home {
 			$(".misty-loading").fadeOut(500, () => $(".misty-loading").remove()); 
 			return;
 		}
-		for(let item of this.data.Items) {
-			const detail = await this.getItem(item.Id),
-				itemHtml = `
+		for(let detail of this.data.Items) {
+			const itemHtml = `
 			<div class="misty-banner-item" id="${detail.Id}">
 				<img draggable="false" loading="eager" decoding="sync" class="misty-banner-cover" src="${await this.getImageUrl(detail.Id, this.coverOptions)}" alt="Backdrop" style="">
 				<div class="misty-banner-info padded-left padded-right">
