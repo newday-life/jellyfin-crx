@@ -1,4 +1,6 @@
-
+.homePage .section0 .padded-top-focusscale.padded-bottom-focusscale.emby-scroller {
+    overflow: visible!important; 
+}
 .scrollbuttoncontainer-backwards {
 	left: 0;
 	inset-inline-start: 0;
