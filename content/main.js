@@ -1,10 +1,10 @@
 class Home {
 	static start() {
 		this.refreshItem = true;
-		this.cache = { items: undefined, item: new Map() };
+		this.cache = { items: undefined };
 		this.index = 1;
 		this.transitionendFlag = false;
-		this.itemQuery = { ImageTypes: "Backdrop", EnableImageTypes: "Primary,Backdrop,Banner,Thumb,Logo", IncludeItemTypes: "Movie,Series", SortBy: "ProductionYear, PremiereDate, SortName", Recursive: true, ImageTypeLimit: 1, Limit: 10, Fields: "Overview", SortOrder: "Descending", EnableUserData: false, EnableTotalRecordCount: false };
+		this.itemQuery = { ImageTypes: "Backdrop", EnableImageTypes: "Backdrop", IncludeItemTypes: "Movie,Series", SortBy: "ProductionYear, PremiereDate, SortName", Recursive: true, ImageTypeLimit: 1, Limit: 10, Fields: "Overview", SortOrder: "Descending", EnableUserData: false, EnableTotalRecordCount: false };
 		this.coverOptions = { type: "Backdrop", maxWidth: 3000, adjustForPixelRatio: false };
 		this.logoOptions = { type: "Logo", maxWidth: 3000, adjustForPixelRatio: false };
 		this.coverType_L = "Backdrop";//横屏
@@ -215,7 +215,6 @@ class Home {
 			runningTransitions.delete(e.target);
 			if (runningTransitions.size == 0) {
 				if (this.transitionendFlag) {
-					// console.log("位置：", this.index);
 					if (this.index >= $(".homePage:not(.hide) .misty-banner-item").length - 1) {
 						this.index = 1;
 						this.staticSwitchCss();
@@ -276,9 +275,7 @@ class Home {
 				this.flag = true;
 				$(".homePage:not(.hide) .misty-banner-body").css({ left: -this.index * innerWidth + this.moveX, transition: "none" });
 			}
-			else {
-				// this.alertDialog();
-			}
+			
 		}.bind(this));
 		//手指离开
 		$(".homePage:not(.hide) .misty-banner-body").on('touchend', function (e) {
@@ -294,9 +291,7 @@ class Home {
 						$(".homePage:not(.hide) .misty-banner-body").css({ left: -(this.index * 100).toString() + "%", transition: "none" });
 					}
 				}
-			} else {
-				// this.alertDialog();
-			}
+			} 
 			this.startCarousel();
 		}.bind(this));
 	}
@@ -305,16 +300,6 @@ class Home {
 		this.bannerInterval = setInterval(() => {
 			this.forwards();
 		}, 8000);
-	}
-	static getRandomArrayElements(arr, count) {
-		var shuffled = arr.slice(0), i = arr.length, min = i - count, temp, index;
-		while (i-- > min) {
-			index = Math.floor((i + 1) * Math.random());
-			temp = shuffled[index];
-			shuffled[index] = shuffled[i];
-			shuffled[i] = temp;
-		}
-		return shuffled.slice(min);
 	}
 
 	/* 插入Banner */
@@ -359,11 +344,12 @@ class Home {
 					<div><button onclick="Emby.Page.showItem('${detail.Id}')">MORE</button></div>
 				</div>
 			</div>
-			`,
-				logoHtml = `
-			<img id="${detail.Id}" draggable="false" loading="eager" decoding="sync" class="misty-banner-logo" data-banner="img-title" alt="Logo" src="${await this.getImageUrl(detail.Id, this.logoOptions)}">
 			`;
+				
 			if (detail.ImageTags && detail.ImageTags.Logo) {
+				const logoHtml = `
+				<img id="${detail.Id}" draggable="false" loading="eager" decoding="sync" class="misty-banner-logo" data-banner="img-title" alt="Logo" src="${await this.getImageUrl(detail.Id, this.logoOptions)}">
+				`;
 				$(".homePage:not(.hide) .misty-banner-logos").append(logoHtml);
 			}
 			$(".homePage:not(.hide) .misty-banner-body").append(itemHtml);
