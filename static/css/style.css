@@ -1,5 +1,7 @@
-:root:not(.layout-mobile):not(.layout-tv) .homePage .section0 .padded-top-focusscale.padded-bottom-focusscale.emby-scroller {
-    overflow: visible!important; 
+@media (min-width: 50em) {
+	.layout-desktop .homePage .section0 .padded-top-focusscale.padded-bottom-focusscale.emby-scroller {
+		overflow: visible !important;
+	}
 }
 
 .scrollbuttoncontainer-backwards {
