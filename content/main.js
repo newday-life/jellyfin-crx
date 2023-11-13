@@ -4,7 +4,7 @@ class Home {
 		this.cache = { items: undefined, item: new Map() };
 		this.index = 1;
 		this.transitionendFlag = false;
-		this.itemQuery = { ImageTypes: "Backdrop", EnableImageTypes: "Backdrop,Banner,Thumb,Logo", IncludeItemTypes: "Movie,Series", SortBy: "ProductionYear, PremiereDate, SortName", Recursive: true, ImageTypeLimit: 1, Limit: 10, Fields: "Overview", SortOrder: "Descending", EnableUserData: false, EnableTotalRecordCount: false };
+		this.itemQuery = { ImageTypes: "Backdrop", EnableImageTypes: "Primary,Backdrop,Banner,Thumb,Logo", IncludeItemTypes: "Movie,Series", SortBy: "ProductionYear, PremiereDate, SortName", Recursive: true, ImageTypeLimit: 1, Limit: 10, Fields: "Overview", SortOrder: "Descending", EnableUserData: false, EnableTotalRecordCount: false };
 		this.coverOptions = { type: "Backdrop", maxWidth: 3000, adjustForPixelRatio: false };
 		this.logoOptions = { type: "Logo", maxWidth: 3000, adjustForPixelRatio: false };
 		this.coverType_L = "Backdrop";//横屏
