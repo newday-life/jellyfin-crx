@@ -78,8 +78,13 @@
 	background: linear-gradient(rgba(0, 0, 0, .5), transparent) !important;
 }
 
-.homePage.pageWithAbsoluteTabs:not(.noSecondaryNavPage) {
+/* .homePage.pageWithAbsoluteTabs:not(.noSecondaryNavPage) {
 	padding-top: 0 !important;
+} */
+
+div#homeTab {
+	top: -7.5em;
+	position: relative;
 }
 
 .homePage:not(.hide) .scrollbuttoncontainer {
