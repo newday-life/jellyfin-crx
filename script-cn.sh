@@ -1,6 +1,7 @@
 #!/bin/bash
 
 read -p "请输入 Jellyfin 容器名称:" name
+echo "程序安装中...（如长时间未响应，请检查网络是否能连接Github）"
 
 # 在容器内创建文件夹
 docker exec -it  $name rm -rf /jellyfin/jellyfin-web/jellyfin-crx/
