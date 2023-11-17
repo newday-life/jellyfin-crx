@@ -4,19 +4,19 @@
 	}
 }
 
-.scrollbuttoncontainer-backwards {
+.homePage .scrollbuttoncontainer-backwards {
 	left: 0;
 	inset-inline-start: 0;
 	inset-inline-end: initial;
 }
 
-.scrollbuttoncontainer-forwards {
+.homePage .scrollbuttoncontainer-forwards {
 	right: 0;
 	inset-inline-start: initial;
 	inset-inline-end: 0;
 }
 
-.paper-icon-button-light>i {
+.homePage .paper-icon-button-light>i {
 	font-size: 4em !important;
 	height: 1.25em;
 	width: 1.25em;
@@ -25,18 +25,18 @@
 	align-items: center;
 }
 
-.paper-icon-button-light:enabled {
+.homePage .paper-icon-button-light:enabled {
 	cursor: pointer;
 }
 
 @media (hover: hover) and (pointer: fine) {
-	.emby-scrollbuttons-scrollbutton {
+	.homePage .emby-scrollbuttons-scrollbutton {
 		transition: -webkit-transform 180ms ease-out;
 		transition: transform 180ms ease-out;
 	}
 }
 
-.paper-icon-button-light {
+.homePage .paper-icon-button-light {
 	position: relative;
 	display: -webkit-inline-flex;
 	display: inline-flex;
@@ -77,10 +77,6 @@
 .skinHeader.focuscontainer-x.skinHeader-withBackground {
 	background: linear-gradient(rgba(0, 0, 0, .5), transparent) !important;
 }
-
-/* .homePage.pageWithAbsoluteTabs:not(.noSecondaryNavPage) {
-	padding-top: 0 !important;
-} */
 
 div#homeTab {
 	top: -7.5em;
@@ -162,22 +158,6 @@ button.emby-scrollbuttons-scrollbutton.paper-icon-button-light {
 	background-color: unset;
 }
 
-.homePage:not(.hide) .skinHeader,
-.skinHeader-withBackground.headroom-scrolling {
-	width: auto;
-	background-image: linear-gradient(black, transparent) !important;
-	background-color: unset !important;
-}
-
-.homePage[data-type=home]:not(.hide)>div:nth-child(1) .scrollSlider.padded-top-page {
-	padding-top: 0 !important;
-}
-
-.homePage:not(.hide) .itemsContainer-finepointerwrap {
-	flex-wrap: initial !important;
-	-webkit-flex-wrap: initial !important;
-}
-
 .homePage:not(.hide) .section0 {
 	z-index: 2;
 }
@@ -227,25 +207,6 @@ button.emby-scrollbuttons-scrollbutton.paper-icon-button-light {
 .homePage:not(.hide) .section0 .card:hover {
 	transform: scale(1.1) !important;
 }
-
-.homePage:not(.hide) .section0 .scrollbuttoncontainer {
-	top: 0;
-	bottom: calc(.8em - min(.72em, max(.48em, 1.78vw)) / 2);
-	background-color: rgba(0, 0, 0, 0);
-	overflow: visible;
-}
-
-.homePage:not(.hide) .section0 .scrollbuttoncontainer:hover>.emby-scrollbuttons-scrollbutton,
-.homePage:not(.hide) .scrollbuttoncontainer-misty:hover>.emby-scrollbuttons-scrollbutton {
-	background-color: rgba(0, 0, 0, .5);
-	transform: scale(.85) !important;
-}
-
-/* .tabs-viewmenubar-backgroundcontainer:not(.tabs-viewmenubar-backgroundcontainer-tv) {
-	background: 0 0 !important;
-	-webkit-backdrop-filter: blur(10px) !important;
-	backdrop-filter: blur(10px) !important;
-} */
 
 .misty-banner {
 	position: relative;
