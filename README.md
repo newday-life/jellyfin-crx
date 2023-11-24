@@ -20,3 +20,4 @@ wget -O script.sh --no-check-certificate https://gh-proxy.com/https://raw.github
 
 ### 参考教程1(非官方): https://cangshui.net/5167.html
 ### 参考教程2(非官方): https://mj.tk/2023/07/Emby
+![网页捕获_24-11-2023_234625_192 168 31 88](https://github.com/newday-life/jellyfin-crx/assets/25839463/1e9c248f-4a01-4643-8f99-43b4afe8eee6)
