@@ -18,11 +18,6 @@ Chrome 扩展设置 > 开发者模式 > 加载已解压的扩展程序 > 直接�
 # 执行后需要输入容器名!
 wget -O script.sh --no-check-certificate https://raw.githubusercontent.com/newday-life/jellyfin-crx/master/script.sh && bash script.sh
 ```
-### 国内加速使用这个
-```
-# 国内访问加速
-wget -O script.sh --no-check-certificate https://gh-proxy.com/https://raw.githubusercontent.com/newday-life/jellyfin-crx/master/script.sh && bash script.sh
-```
 
 ---
 
