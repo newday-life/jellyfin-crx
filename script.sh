@@ -1,7 +1,7 @@
 #!/bin/bash
 
 read -p "请输入 Jellyfin 容器名称:" name
-echo "程序安装中...（如长时间未响应，请检查网络是否能连接Github）"
+echo "程序安装中...（如长时间未响应或下载失败，请检查网络是否能连接Github）"
 
 # 在容器内创建文件夹
 docker exec -it  $name rm -rf /jellyfin/jellyfin-web/jellyfin-crx/
@@ -9,11 +9,11 @@ docker exec -it  $name mkdir -p /jellyfin/jellyfin-web/jellyfin-crx/
 
 # 下载所需文件到系统
 echo "正在下载缓存文件，请稍等... ..."
-wget -q --no-check-certificate https://raw.githubusercontent.com/newday-life/jellyfin-crx/master/static/css/style.css -O style.css || { echo "错误：无法下载 style.css"; exit 1; }
-wget -q --no-check-certificate https://raw.githubusercontent.com/newday-life/jellyfin-crx/master/static/js/common-utils.js -O common-utils.js || { echo "错误：无法下载 style.css"; exit 1; }
-wget -q --no-check-certificate https://raw.githubusercontent.com/newday-life/jellyfin-crx/master/static/js/jquery-3.6.0.min.js -O jquery-3.6.0.min.js || { echo "错误：无法下载 style.css"; exit 1; }
-wget -q --no-check-certificate https://raw.githubusercontent.com/newday-life/jellyfin-crx/master/static/js/md5.min.js -O md5.min.js || { echo "错误：无法下载 style.css"; exit 1; }
-wget -q --no-check-certificate https://raw.githubusercontent.com/newday-life/jellyfin-crx/master/content/main.js -O main.js || { echo "错误：无法下载 style.css"; exit 1; }
+wget -q --no-check-certificate https://raw.githubusercontent.com/newday-life/jellyfin-crx/master/static/css/style.css -O style.css || { echo "错误：无法下载"; exit 1; }
+wget -q --no-check-certificate https://raw.githubusercontent.com/newday-life/jellyfin-crx/master/static/js/common-utils.js -O common-utils.js || { echo "错误：无法下载"; exit 1; }
+wget -q --no-check-certificate https://raw.githubusercontent.com/newday-life/jellyfin-crx/master/static/js/jquery-3.6.0.min.js -O jquery-3.6.0.min.js || { echo "错误：无法下载"; exit 1; }
+wget -q --no-check-certificate https://raw.githubusercontent.com/newday-life/jellyfin-crx/master/static/js/md5.min.js -O md5.min.js || { echo "错误：无法下载"; exit 1; }
+wget -q --no-check-certificate https://raw.githubusercontent.com/newday-life/jellyfin-crx/master/content/main.js -O main.js || { echo "错误：无法下载"; exit 1; }
 
 # 从系统复制文件到容器内
 docker cp style.css $name:/jellyfin/jellyfin-web/jellyfin-crx/
