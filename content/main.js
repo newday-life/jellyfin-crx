@@ -267,6 +267,7 @@ class Home {
 			} else {
 				this.alertDialog();
 			}
+			e.stopPropagation();
 		}.bind(this));
 		//手指移动
 		$(".homePage:not(.hide) .misty-banner-body").on('touchmove', function (e) {
@@ -275,7 +276,7 @@ class Home {
 				this.flag = true;
 				$(".homePage:not(.hide) .misty-banner-body").css({ left: -this.index * innerWidth + this.moveX, transition: "none" });
 			}
-			
+			e.stopPropagation();
 		}.bind(this));
 		//手指离开
 		$(".homePage:not(.hide) .misty-banner-body").on('touchend', function (e) {
@@ -293,6 +294,7 @@ class Home {
 				}
 			} 
 			this.startCarousel();
+			e.stopPropagation();
 		}.bind(this));
 	}
 	static startCarousel() {
