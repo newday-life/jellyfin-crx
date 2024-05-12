@@ -13,7 +13,7 @@ class Home {
 
 		/* 监控节点加载 */
 		document.addEventListener("viewbeforeshow", function (e) {
-			if (e.detail.type === "home") {
+			if (e.detail.type === "home" || e.target.id === "indexPage") {
 				//如果高度大于宽度，判断为竖屏
 				if (innerWidth < innerHeight) {
 					if (this.coverOptions.type != this.coverType_P) this.coverOptions.type = this.coverType_P;
