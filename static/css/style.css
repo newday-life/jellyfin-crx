@@ -322,7 +322,6 @@ button.emby-scrollbuttons-scrollbutton.paper-icon-button-light {
 	top: 0;
 	z-index: 1;
 	height: 100%;
-	height: -webkit-fill-available;
 	display: flex;
 	flex-direction: column;
 	justify-content: center
